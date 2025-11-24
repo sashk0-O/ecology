@@ -1,0 +1,164 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #eaf8ef;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+/* ===== РАХУНОК ЗВЕРХУ ЛІВОРУЧ ===== */
+.score-top {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  color: #104f2f;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+h1 {
+  color: #1c7d4d;
+}
+
+/* ===== СМІТНИКИ ===== */
+.bins {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin-bottom: 50px;
+}
+
+.bin {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  width: 170px;
+  height: 200px;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bin img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.bin img:hover {
+  transform: scale(1.05);
+}
+
+.bin p {
+  font-weight: bold;
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #1c7d4d;
+}
+
+/* ===== ПРЕДМЕТИ ЗВЕРХУ ===== */
+.trash-area {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin-bottom: 30px;
+}
+
+.trash {
+  width: 90px;
+  height: 90px;
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+  object-fit: contain;
+}
+
+.trash:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* ===== ТАБЛИЦЯ НИЗОМ ЗІ СМІТТЯМ ===== */
+.trash-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 120px);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.trash-cell {
+  background: #ffffff;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: 0.2s;
+}
+
+.trash-cell img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+/* ===== ЕФЕКТИ ===== */
+.correct {
+  background-color: #c8f7c5;
+  transition: background 0.3s;
+}
+
+.wrong {
+  background-color: #f7c5c5;
+  transition: background 0.3s;
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+  margin-top: 40px;
+}
+
+a {
+  text-decoration: none;
+  color: #1c7d4d;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* відстань між очками і заголовком */
+  justify-content: center; /* центруємо весь блок */
+}
+
+.score-box {
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2b7a2f;
+  border: 2px solid #2b7a2f;
+}

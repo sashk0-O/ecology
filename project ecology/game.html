@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Sort — Сортуй сміття правильно!</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+
+
+  <header>
+  <div class="header-top">
+      <div class="score-box">
+        Очки: <span id="score">0</span>
+      </div>
+
+      <h1>♻️ Eco Sort — Сортуй сміття правильно!</h1>
+  </div>
+
+  <p>Перетягни предмет у правильний контейнер і врятуй планету 🌍</p>
+</header>
+
+
+  <main>
+    <div class="bins">
+      <div class="bin" id="plastic">
+        <img src="PLASTIC.png" alt="Пластик">
+        <p>Пластик</p>
+      </div>
+
+      <div class="bin" id="glass">
+        <img src="GLASS.png" alt="Скло">
+        <p>Скло</p>
+      </div>
+
+      <div class="bin" id="metall">
+        <img src="METAL.png" alt="Метал">
+        <p>Метал</p>
+      </div>
+
+      <div class="bin" id="organic">
+        <img src="ORGANIC.png" alt="Органіка">
+        <p>Органіка</p>
+      </div>
+
+      <div class="bin" id="battery">
+        <img src="BATTERY.png" alt="Батарейки">
+        <p>Батарейки</p>
+      </div>
+
+      <div class="bin" id="electronic">
+        <img src="E-WASTE.png" alt="Електроніка">
+        <p>Електроніка</p>
+      </div>
+    </div>
+ 
+
+    <div class="trash-grid">
+      <img src="Bottle.jpg" class="trash" draggable="true" data-type="plastic">
+      <img src="Bag.png" class="trash" draggable="true" data-type="plastic">
+
+      <img src="glass1.png" class="trash" draggable="true" data-type="glass">
+      <img src="glass2.png" class="trash" draggable="true" data-type="glass">
+
+      <img src="metal1.png" class="trash" draggable="true" data-type="metall">
+      <img src="metal2.png" class="trash" draggable="true" data-type="metall">
+
+      <img src="organic1.png" class="trash" draggable="true" data-type="organic">
+      <img src="organic2.png" class="trash" draggable="true" data-type="organic">
+
+      <img src="battery1.png" class="trash" draggable="true" data-type="battery">
+      <img src="battery2.png" class="trash" draggable="true" data-type="battery">
+
+      <img src="electro1.png" class="trash" draggable="true" data-type="electronic">
+      <img src="electro2.png" class="trash" draggable="true" data-type="electronic">
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="main.html">← Назад до сайту</a>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
