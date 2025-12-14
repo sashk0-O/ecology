@@ -9,23 +9,125 @@
   /* Комікс-панелі */
   .comic {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     margin: 30px 0;
   }
-  .panel {
+  
+  .comic-panel {
     background: #fff;
     border: 3px solid #000;
-    border-radius: 8px;
-    padding: 15px;
-    font-weight: bold;
+    border-radius: 12px;
+    padding: 20px;
     box-shadow: 6px 6px 0 #000;
-    transition: .3s;
+    transition: all 0.3s;
     cursor: pointer;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .panel:hover {
+  
+  .comic-panel:hover {
     transform: translateY(-5px);
     box-shadow: 10px 10px 0 #000;
+  }
+  
+  .comic-panel.active {
+    border-color: #1b5e20;
+    box-shadow: 6px 6px 0 #1b5e20;
+  }
+  
+  .character {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  
+  .character-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1b5e20;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .dialogue {
+    background: #fff9c4;
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative;
+    margin-top: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .dialogue::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #000;
+  }
+  
+  .dialogue::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff9c4;
+  }
+  
+  .click-hint {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+  
+  /* Buttons */
+  button {
+    background: #1b5e20;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+    transition: 0.3s;
+    width: auto;
+    display: inline-block;
+  }
+  
+  button:hover {
+    background: #2e7d32;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  /* Video responsive */
+  video {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Контейнер мапи */
@@ -73,92 +175,156 @@
     margin-left: auto;
     margin-right: auto;
   }
-
-  /* Buttons */
-  button {
-    background: #1b5e20;
+  
+  /* Повідомлення внизу сторінки */
+  #regionDataMessage {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
     color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1rem;
     font-weight: bold;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #regionDataMessage.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  #regionDataMessage .message-content {
+    flex: 1;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+  
+  #regionDataMessage .close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
-    margin: 5px;
-    transition: 0.3s;
-    width: auto;
-    display: inline-block;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
   }
-
-  button:hover {
-    background: #2e7d32;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  
+  #regionDataMessage .close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
   }
-
-  /* Video responsive */
-  video {
-    max-width: 100%;
-    height: auto;
+  
+  #regionDataMessage .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
   }
-
-  /* Responsive design for plastic.html */
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
   @media screen and (max-width: 768px) {
     .comic {
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin: 20px 0;
+      gap: 15px;
     }
-
-    .panel {
-      padding: 12px;
-      font-size: 0.9rem;
+    
+    .comic-panel {
+      min-height: 180px;
+      padding: 15px;
     }
-
-    .map-container {
-      width: 100%;
-      padding: 0 10px;
+    
+    .character {
+      font-size: 3rem;
     }
-
-    #ukraineMap {
-      max-width: 100%;
+    
+    .dialogue {
+      font-size: 0.85rem;
+      padding: 10px 12px;
     }
-
+    
     #regionInfo {
       width: 90%;
       font-size: 0.95rem;
-      padding: 10px;
-      margin-top: 10px;
     }
-
+    
+    #regionDataMessage {
+      padding: 15px;
+      font-size: 1rem;
+    }
+    
+    #regionDataMessage .message-content {
+      padding: 0 10px;
+    }
+    
+    #regionDataMessage .close-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+    
     button {
       width: 100%;
       margin: 5px 0;
       padding: 14px;
       font-size: 0.95rem;
     }
-
-    section {
-      padding: 15px !important;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-    }
   }
-
+  
   @media screen and (max-width: 480px) {
-    .panel {
-      padding: 10px;
-      font-size: 0.85rem;
+    .comic-panel {
+      min-height: 160px;
+      padding: 12px;
     }
-
-    #regionInfo {
-      width: 95%;
-      font-size: 0.85rem;
-      padding: 8px;
+    
+    .character {
+      font-size: 2.5rem;
     }
-
+    
+    .dialogue {
+      font-size: 0.8rem;
+      padding: 8px 10px;
+      min-height: 50px;
+    }
+    
+    #regionDataMessage {
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+    
+    #regionDataMessage .message-content {
+      padding: 0 5px;
+    }
+    
+    #regionDataMessage .icon {
+      font-size: 1.2rem;
+      margin-right: 5px;
+    }
+    
     button {
       padding: 12px;
       font-size: 0.9rem;
@@ -171,8 +337,7 @@
 <body>
 <header>
   <h1>🧴 Пластик</h1>
-  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
-  <nav id="mainNav">
+  <nav>
     <a href="main.html">🏠 Головна</a>
     <a href="glass.html">🥛 Скло</a>
     <a href="metal.html">🔩 Метал</a>
@@ -196,14 +361,43 @@
   <!-- КОМІКС -->
   <section>
     <h2>🦸 Комікс: «Еко-Герої в дії»</h2>
-    <p>Комікс демонструє боротьбу з пластиковим забрудненням.</p>
+    <p>Натисни на персонажів, щоб почути їхні діалоги про пластик та переробку!</p>
 
-      <div class="comic">
-      <div class="panel">🌍 Планета в небезпеці!</div>
-      <div class="panel">🦸 Еко-Герої вирушають у місію</div>
-      <div class="panel">🔬 Сканування пластику</div>
-      <div class="panel">🚯 Зупинка сміттєвого монстра</div>
-      <div class="panel">♻️ Перемога: переробка та чистота</div>
+    <div class="comic">
+      <div class="comic-panel" onclick="changeDialogue(0)">
+        <div class="character">🌍</div>
+        <div class="character-name">Планета Земля</div>
+        <div class="dialogue" id="dialogue-0">Я страждаю від пластикового сміття! Допоможіть мені!</div>
+        <div class="click-hint">👆 Натисни мене!</div>
+      </div>
+      
+      <div class="comic-panel" onclick="changeDialogue(1)">
+        <div class="character">🦸</div>
+        <div class="character-name">Еко-Герой</div>
+        <div class="dialogue" id="dialogue-1">Не хвилюйся! Ми врятуємо тебе від пластику!</div>
+        <div class="click-hint">👆 Натисни мене!</div>
+      </div>
+      
+      <div class="comic-panel" onclick="changeDialogue(2)">
+        <div class="character">🔬</div>
+        <div class="character-name">Вчений</div>
+        <div class="dialogue" id="dialogue-2">Пластик розкладається 400-1000 років! Потрібна переробка!</div>
+        <div class="click-hint">👆 Натисни мене!</div>
+      </div>
+      
+      <div class="comic-panel" onclick="changeDialogue(3)">
+        <div class="character">👨‍👩‍👧</div>
+        <div class="character-name">Сім'я</div>
+        <div class="dialogue" id="dialogue-3">Ми сортуємо пластик і здаємо на переробку!</div>
+        <div class="click-hint">👆 Натисни мене!</div>
+      </div>
+      
+      <div class="comic-panel" onclick="changeDialogue(4)">
+        <div class="character">♻️</div>
+        <div class="character-name">Переробка</div>
+        <div class="dialogue" id="dialogue-4">З переробленого пластику роблять нові речі!</div>
+        <div class="click-hint">👆 Натисни мене!</div>
+      </div>
     </div>
   </section>
 
@@ -229,6 +423,15 @@
 
     <p id="regionInfo">Натисніть на область</p>
   </section>
+  
+  <!-- Повідомлення внизу сторінки -->
+  <div id="regionDataMessage">
+    <div class="message-content">
+      <span class="icon">📍</span>
+      <span id="messageText">Натисніть на область на карті</span>
+    </div>
+    <button class="close-btn" onclick="closeRegionMessage()" aria-label="Закрити">×</button>
+  </div>
 
 </main>
 
@@ -245,6 +448,100 @@ function showResult(choice) {
   } else {
     r.innerText = "Майбутнє: мікропластик у ґрунті, воді та їжі.";
   }
+}
+
+// Діалоги для коміксу
+const dialogues = [
+  {
+    character: "🌍",
+    name: "Планета Земля",
+    lines: [
+      "Я страждаю від пластикового сміття! Допоможіть мені!",
+      "Пластик забруднює мої океани та ліси!",
+      "Мікропластик потрапляє в мою воду та ґрунт!",
+      "Мені потрібна ваша допомога, щоб стати чистою!",
+      "Кожна пляшка на звалищі шкодить мені!"
+    ]
+  },
+  {
+    character: "🦸",
+    name: "Еко-Герой",
+    lines: [
+      "Не хвилюйся! Ми врятуємо тебе від пластику!",
+      "Разом ми можемо змінити ситуацію!",
+      "Сортування відходів — це наша суперсила!",
+      "Кожен може стати еко-героєм!",
+      "Ми боремося за чисту планету!"
+    ]
+  },
+  {
+    character: "🔬",
+    name: "Вчений",
+    lines: [
+      "Пластик розкладається 400-1000 років! Потрібна переробка!",
+      "Одна пляшка може розкладатися до 1000 років!",
+      "Переробка пластику економить нафту та енергію!",
+      "Мікропластик невидимий, але дуже небезпечний!",
+      "Наукові дослідження показують важливість переробки!"
+    ]
+  },
+  {
+    character: "👨‍👩‍👧",
+    name: "Сім'я",
+    lines: [
+      "Ми сортуємо пластик і здаємо на переробку!",
+      "Навчаємо дітей правильно сортувати відходи!",
+      "Кожна сім'я може зробити різницю!",
+      "Ми використовуємо багаторазові пляшки замість одноразових!",
+      "Наші діти мають право на чисту планету!"
+    ]
+  },
+  {
+    character: "♻️",
+    name: "Переробка",
+    lines: [
+      "З переробленого пластику роблять нові речі!",
+      "1 пляшка = нова пляшка або футболка!",
+      "Переробка зменшує кількість сміття на 80%!",
+      "Кожна перероблена пляшка рятує навколишнє середовище!",
+      "Переробка — це майбутнє без сміття!"
+    ]
+  }
+];
+
+let currentDialogueIndex = [0, 0, 0, 0, 0];
+
+// Функція для закриття повідомлення про регіон
+function closeRegionMessage() {
+  const messageDiv = document.getElementById("regionDataMessage");
+  messageDiv.classList.remove("show");
+  clearTimeout(window.regionMessageTimeout);
+}
+
+function changeDialogue(panelIndex) {
+  const panel = document.querySelectorAll('.comic-panel')[panelIndex];
+  const dialogueElement = document.getElementById(`dialogue-${panelIndex}`);
+  
+  // Оновлюємо індекс діалогу для цього панелі
+  currentDialogueIndex[panelIndex]++;
+  if (currentDialogueIndex[panelIndex] >= dialogues[panelIndex].lines.length) {
+    currentDialogueIndex[panelIndex] = 0;
+  }
+  
+  // Змінюємо текст діалогу
+  dialogueElement.textContent = dialogues[panelIndex].lines[currentDialogueIndex[panelIndex]];
+  
+  // Додаємо візуальний ефект
+  panel.classList.add('active');
+  setTimeout(() => {
+    panel.classList.remove('active');
+  }, 500);
+  
+  // Анімація зміни
+  dialogueElement.style.opacity = '0';
+  setTimeout(() => {
+    dialogueElement.style.opacity = '1';
+  }, 150);
 }
 
 const regionData = {
@@ -275,22 +572,6 @@ const regionData = {
   "kyiv": "Київ: розвинена система збору та переробки пластику."
 };
 
-function toggleMenu() {
-  const nav = document.getElementById('mainNav');
-  nav.classList.toggle('active');
-}
-
-// Close menu when clicking outside on mobile
-document.addEventListener('click', function(event) {
-  const nav = document.getElementById('mainNav');
-  const toggle = document.querySelector('.menu-toggle');
-  if (window.innerWidth <= 768 && nav.classList.contains('active')) {
-    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
-      nav.classList.remove('active');
-    }
-  }
-});
-
 document.getElementById("ukraineMap").addEventListener("load", () => {
   const svg = document.getElementById("ukraineMap").contentDocument;
   const regions = svg.querySelectorAll("path");
@@ -309,8 +590,22 @@ document.getElementById("ukraineMap").addEventListener("load", () => {
     });
 
     region.addEventListener("click", () => {
-      document.getElementById("regionInfo").innerText =
-        regionData[id] || "Інформація для цієї області ще не додана.";
+      const info = regionData[id] || "Інформація для цієї області ще не додана.";
+      
+      // Оновлюємо інформацію над картою
+      document.getElementById("regionInfo").innerText = info;
+      
+      // Показуємо повідомлення з regionData внизу сторінки
+      const messageDiv = document.getElementById("regionDataMessage");
+      const messageText = document.getElementById("messageText");
+      messageText.textContent = info;
+      messageDiv.classList.add("show");
+      
+      // Ховаємо повідомлення через 15 секунд (якщо не закрито вручну)
+      clearTimeout(window.regionMessageTimeout);
+      window.regionMessageTimeout = setTimeout(() => {
+        closeRegionMessage();
+      }, 15000);
     });
   });
 });
