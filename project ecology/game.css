@@ -162,3 +162,151 @@ a:hover {
   color: #2b7a2f;
   border: 2px solid #2b7a2f;
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet and below (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .bins {
+    gap: 25px;
+  }
+
+  .bin {
+    width: 150px;
+    height: 180px;
+  }
+
+  .bin img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(4, 100px);
+    gap: 15px;
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .header-top h1 {
+    font-size: 1.2rem;
+  }
+
+  .score-box {
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+
+  .bins {
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .bin {
+    width: 120px;
+    height: 150px;
+    padding: 10px;
+  }
+
+  .bin img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bin p {
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(3, 90px);
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .trash {
+    width: 70px;
+    height: 70px;
+  }
+
+  footer {
+    margin-top: 30px;
+  }
+}
+
+/* Small mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  .header-top h1 {
+    font-size: 1rem;
+  }
+
+  .score-box {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  .bins {
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .bin {
+    width: 100px;
+    height: 130px;
+    padding: 8px;
+  }
+
+  .bin img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .bin p {
+    font-size: 0.75rem;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(3, 75px);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .trash {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .bins {
+    gap: 12px;
+  }
+
+  .bin {
+    width: 110px;
+    height: 140px;
+  }
+
+  .trash-grid {
+    grid-template-columns: repeat(4, 80px);
+  }
+}

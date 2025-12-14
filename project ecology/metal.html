@@ -10,7 +10,8 @@
 <body>
   <header>
     <h1>🔩 Метал</h1>
-    <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <nav id="mainNav">
       <a href="main.html">🏠 Головна</a>
       <a href="plastic.html">🧴 Пластик</a>
       <a href="glass.html">🥛 Скло</a>
@@ -58,5 +59,22 @@
   <footer>
     <p>© 2025 EcoFuture — Метал</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const nav = document.getElementById('mainNav');
+      const toggle = document.querySelector('.menu-toggle');
+      if (window.innerWidth <= 768 && nav.classList.contains('active')) {
+        if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+          nav.classList.remove('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
